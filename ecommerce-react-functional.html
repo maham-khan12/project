@@ -74,9 +74,89 @@
             document.title = `You clicked ${count} times`;
           });
           return (
-
+             <div>
+              <p>You Clicked {count} times</p>
+              <button onClick={() => setCount(count +1)}>
+                Click me
+                </button>
+             </div>
+           );
+         };
+         // style becomes object its not a string anymore, if it is string your application will not render
+         //Example
+         // <idiv style="width:30px; height:30px"> this will not render
+          // <div style={{"width":30px, "flexDirection":20py}}
+          // class becomes className, it will not render
+          // example 
+          // <div class="px-2 py-2 w-10"> this wont render
+          // <div className="px-2 py-2 w-2">
+            const productBox = () => {
+              const products = [
+              {
+                id: 1,
+                name: 'water bottle',
+                description: 'color: blue size: large',
+                price: 100,
+                discounted_price: 99,
+            },
+            {
+                id: 2,
+                name: 'mouse',
+                description: 'wired usb port',
+                price: 250,
+                discounted_price: 199,
+            },
+            {
+                id: 3,
+                name: 'watch',
+                description: 'color: black, watch type: smart, brand: apple',
+                price: 5000,
+                discounted_price: 4999,
+            },
+            {
+                id: 4,
+                name: 'infinix s23',
+                description: 'color blue, storage: 120gb ram: 2gb display: 6x4',
+                price: 25000,
+                discounted_price: 24999,
+            },
+            {
+                id: 5,
+                name: 'shoes',
+                description: 'size: 8, color blue, type: sports wear',
+                price: 3000,
+                discounted_price: 3000,
+            },
+          ];
+          return (
+            <>
+            {
+              products.map((x) => {
+                return (
+                  <div className="bg-white-500 text-black-500 p-4 rounded-md shadow-2xl slideDown">
+                            <h1 className="font-bold">{ x.name }</h1>
+                            <p className="font-medium">{ x.description }</p>
+                            <div className="text-pink-500" v-if="x.discounted_price < x.price">
+                            <span className="text-red-600 line-through">{ x.price }</span>
+                            { x.discounted_price }
+                            </div>
+                            <div className="text-pink-500" v-else>{ x.price }</div>
+                            <div className="">
+                            <input type="number" id='"qty"+ x.id' />
+                            <button
+                                className="bg-pink-400 text-white-200 font-medium rounded-lg w-32 py-1"
+                                onClick={()=>{ addToCart(x.id) }}
+                            >
+                                Add to Cart
+                            </button>
+                            </div>
+                        </div>
+                  )
+              })
+            }
+            </>
           )
-        }
+       }
       </script>   
         <div id='header' class='bg-pink-500 p-6 text-center'>
           <h1 class="text-3xl font-bold">Header</h1>
